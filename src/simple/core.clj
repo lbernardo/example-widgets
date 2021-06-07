@@ -10,14 +10,14 @@
 
 (defn example [lang-selected]
   (let [langs {:pt-br l.pt-br/content :es l.es/content}
-        lang ((keyword lang-selected) langs )]
-
+        lang ((keyword lang-selected) langs)]
     (println (to-json (widgets/CreateScreen {:children [
-                                                        (widgets/Title (:document/title lang) ; Title
-                                                                       (:document/subtitle lang)) ; Subtitle
-                                                        (widgets/Input "document" (:document/placeholder lang))
+                                                        (widgets/Title {:title    (:document/title lang)
+                                                                        :subtitle (:document/subtitle lang)})
+                                                        (widgets/Input {:id          "document"
+                                                                        :placeholder (:document/placeholder lang)})
                                                         ]
-                                             :bottom (widgets/BottomButton (:continue lang) widgets/button-style-primary)}
+                                             :bottom   (widgets/BottomButton {:text (:continue lang)})}
                                             )))))
 
 (example "pt-br")
